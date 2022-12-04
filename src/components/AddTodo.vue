@@ -15,7 +15,7 @@
 
 
 <script>
-import uuid from "uuid";
+import {v4} from 'uuid';
 
 export default {
   name: "AddTodo",
@@ -23,23 +23,26 @@ export default {
    * dataとpropsの違いは、
    * props: 親コンポーネント(外側)から渡されるであろう値を自コンポーネントに定義しておくもの。
    * data: コンポーネントがインスタンス化される時に生成される。コンポーネントが持っているコンストラクタみたいなもんかな？？
-   * 
+   *
    * propsは、this.XXX みたいなアクセスはできないけど、 dataは this.XXXみたいなアクセスができるってことかな？
    * */
   data() {
     return {
-      title: "",
+      title: '',
     };
   },
   methods: {
-    addTodo() {
+    addTodo(e) {
+      // 本来はsubmitイベントを呼び出しているが、本来のsubmitとしてのイベントは不要なため preventDefault()でキャンセル。
+      e.preventDefault();
       const newTodo = {
-        id: uuid.v4(),
+        id: v4(),
         title: this.title,
         complated: false,
       };
 
       this.$emit("add-todo", newTodo);
+      this.title = ''
     },
   },
 };

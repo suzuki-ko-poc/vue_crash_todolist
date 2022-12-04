@@ -1,6 +1,6 @@
 <template>
   <header-vue></header-vue>
-  <add-todo-vue></add-todo-vue>
+  <add-todo-vue @add-todo="addTodo"></add-todo-vue>
   <!-- // v-bind: このタブのコンポーネントにデータを渡す。 
     v-bind:todos='todos' で、 todosという属性でtodosの値を渡す。 -->
   <todos-vue v-bind:todos="todos" @del-todo="deleteTodo"></todos-vue>
@@ -40,6 +40,10 @@ export default {
     };
   },
   methods: {
+    addTodo(newTodo){
+      console.log('newItem:', newTodo),
+      this.todos = [...this.todos, newTodo]
+    },
     deleteTodo(id) {
       console.log(id);
       this.todos = this.todos.filter((todo) => todo.id !== id);

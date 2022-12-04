@@ -5,37 +5,46 @@
 </template>
 
 <script>
-import TodosVue from './components/Todos.vue'
+import TodosVue from "./components/Todos.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TodosVue
+    TodosVue,
   },
   data() {
     return {
       todos: [
         {
           id: 1,
-          title: 'todo one',
+          title: "todo one",
           completed: false,
         },
         {
           id: 2,
-          title: 'todo two',
+          title: "todo two",
           completed: true,
         },
         {
           id: 3,
-          title: 'todo three',
+          title: "todo three",
           completed: false,
         },
-      ]
-    }
+      ],
+    };
   },
-}
+};
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
 </style>

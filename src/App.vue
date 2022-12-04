@@ -27,17 +27,33 @@ export default {
   },
   methods: {
     addTodo(newTodo) {
-      console.log("newItem:", newTodo), (this.todos = [...this.todos, newTodo]);
+      const { title, completed } = newTodo;
+
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos", {
+          title,
+          completed,
+        })
+        .then((res) => {
+          this.todos = [...this.todos, res.data];
+          console.log('addTodo',res.data);
+        })
+        .catch((err) => console.log(err));
     },
     deleteTodo(id) {
-      console.log(id);
-      this.todos = this.todos.filter((todo) => todo.id !== id);
+      axios
+        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then((res) => {
+          this.todos = this.todos.filter((todo) => todo.id !== id);
+          console.log('deleteTodo',res.status);
+        })
+        .catch((err) => console.log(err));
     },
   },
   // createdは、vueインスタンスが生成されたタイミングで実行される。
   created() {
     axios
-      .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .get("https://jsonplaceholder.typicode.com/todos")
       .then((res) => (this.todos = res.data))
       .catch((err) => console.log(err));
   },

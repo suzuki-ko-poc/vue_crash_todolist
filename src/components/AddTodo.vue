@@ -15,7 +15,6 @@
 
 
 <script>
-import {v4} from 'uuid';
 
 export default {
   name: "AddTodo",
@@ -36,9 +35,8 @@ export default {
       // 本来はsubmitイベントを呼び出しているが、本来のsubmitとしてのイベントは不要なため preventDefault()でキャンセル。
       e.preventDefault();
       const newTodo = {
-        id: v4(),
         title: this.title,
-        complated: false,
+        completed: false,
       };
 
       this.$emit("add-todo", newTodo);

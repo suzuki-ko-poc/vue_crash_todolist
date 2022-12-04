@@ -11,6 +11,8 @@ import HeaderVue from "./components/layout/Header.vue";
 import AddTodoVue from "./components/AddTodo.vue";
 import TodosVue from "./components/Todos.vue";
 
+import axios from "axios";
+
 export default {
   name: "App",
   components: {
@@ -20,34 +22,24 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: "todo one",
-          completed: false,
-        },
-        {
-          id: 2,
-          title: "todo two",
-          completed: true,
-        },
-        {
-          id: 3,
-          title: "todo three",
-          completed: false,
-        },
-      ],
+      todos: [],
     };
   },
   methods: {
-    addTodo(newTodo){
-      console.log('newItem:', newTodo),
-      this.todos = [...this.todos, newTodo]
+    addTodo(newTodo) {
+      console.log("newItem:", newTodo), (this.todos = [...this.todos, newTodo]);
     },
     deleteTodo(id) {
       console.log(id);
       this.todos = this.todos.filter((todo) => todo.id !== id);
     },
+  },
+  // createdは、vueインスタンスが生成されたタイミングで実行される。
+  created() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then((res) => (this.todos = res.data))
+      .catch((err) => console.log(err));
   },
 };
 </script>

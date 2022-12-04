@@ -2,7 +2,7 @@
     <div>
         <!-- // v-bind:key は :keyと省略出来る。 -->
         <div v-for="todo in todos" :key="todo.id">
-            <todo-items v-bind:todo="todo"></todo-items>
+            <todo-items v-bind:todo="todo" @del-todo="$emit('del-todo', todo.id)"></todo-items>
         </div>
     </div>
 </template>

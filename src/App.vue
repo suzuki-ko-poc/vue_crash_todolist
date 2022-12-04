@@ -1,7 +1,7 @@
 <template>
   <!-- // v-bind: このタブのコンポーネントにデータを渡す。 
     v-bind:todos='todos' で、 todosという属性でtodosの値を渡す。 -->
-  <TodosVue v-bind:todos="todos"></TodosVue>
+  <TodosVue v-bind:todos="todos" @del-todo="deleteTodo"></TodosVue>
 </template>
 
 <script>
@@ -33,6 +33,12 @@ export default {
       ],
     };
   },
+  methods: {
+    deleteTodo(id) {
+      console.log(id)
+      this.todos = this.todos.filter(todo => todo.id !== id)
+    }
+  }
 };
 </script>
 

@@ -1,15 +1,21 @@
 <template>
+  <header-vue></header-vue>
+  <add-todo-vue></add-todo-vue>
   <!-- // v-bind: このタブのコンポーネントにデータを渡す。 
     v-bind:todos='todos' で、 todosという属性でtodosの値を渡す。 -->
-  <TodosVue v-bind:todos="todos" @del-todo="deleteTodo"></TodosVue>
+  <todos-vue v-bind:todos="todos" @del-todo="deleteTodo"></todos-vue>
 </template>
 
 <script>
+import HeaderVue from "./components/layout/Header.vue";
+import AddTodoVue from "./components/AddTodo.vue";
 import TodosVue from "./components/Todos.vue";
 
 export default {
   name: "App",
   components: {
+    HeaderVue,
+    AddTodoVue,
     TodosVue,
   },
   data() {
@@ -35,10 +41,10 @@ export default {
   },
   methods: {
     deleteTodo(id) {
-      console.log(id)
-      this.todos = this.todos.filter(todo => todo.id !== id)
-    }
-  }
+      console.log(id);
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
+  },
 };
 </script>
 
@@ -52,5 +58,18 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
+
+.btn.hover {
+  background: #666;
 }
 </style>

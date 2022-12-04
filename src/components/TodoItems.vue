@@ -4,7 +4,7 @@
   <div class="todo-item" v-bind:class="{ 'is-complate': todo.completed }">
     <!-- @changeは、フォームコントロールの入力内容が変わると、発生するイベント -->
     <!-- v-on:change と @change は同等 -->
-    <input type="checkbox" @change="markComplate">
+    <input type="checkbox" @change="markComplate" />
     <!-- $emit('AAA', value)  で 親コンポーネントに 'AAA'というイベントで、valueという引数を渡す。 -->
     <button class="del" @click="$emit('del-todo', todo.id)">x</button>
     <p>{{ todo.title }}</p>
@@ -16,11 +16,11 @@ export default {
   name: "TodoItem",
   props: ["todo"],
   methods: {
-    markComplate(){
-        // eslint-disable-next-line vue/no-mutating-props
-        this.todo.completed = !this.todo.completed
-    }
-  }
+    markComplate() {
+      // eslint-disable-next-line vue/no-mutating-props
+      this.todo.completed = !this.todo.completed;
+    },
+  },
 };
 </script>
 

@@ -34,6 +34,8 @@ export default {
           completed,
         })
         .then((res) => {
+          console.log('post axiosが呼ばれた','https://jsonplaceholder.typicode.com/todos')
+          console.log('res.data', res.data)
           this.todos = [...this.todos, res.data];
           console.log('addTodo',res.data);
         })
@@ -43,6 +45,7 @@ export default {
       axios
         .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
         .then((res) => {
+          console.log('delete axiosが呼ばれた',`https://jsonplaceholder.typicode.com/todos/${id}`)
           this.todos = this.todos.filter((todo) => todo.id !== id);
           console.log('deleteTodo',res.status);
         })
@@ -52,8 +55,11 @@ export default {
   // createdは、vueインスタンスが生成されたタイミングで実行される。
   created() {
     axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => (this.todos = res.data))
+      .get("http://localhost:1111/hello")
+      .then((res) => {
+        console.log('get axiosが呼ばれた',"http://localhost:1111hello"),
+        this.todos = res.data
+      }) 
       .catch((err) => console.log(err));
   },
 };

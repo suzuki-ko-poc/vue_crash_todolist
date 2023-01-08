@@ -1,7 +1,11 @@
 <template>
   <!-- v-bind:XXX= にオブジェクトを渡すことによって、そのvalueがtrueに該当する際にはそのクラス名をつける。 -->
   <!-- ex) v-bind:class="{ 'is-complate': todo.completed } は todo.completedがtrueの場合は is-complateというクラスメイをつける。 -->
-  <div class="todo-item" v-bind:class="{ 'is-complate': todo.completed }">
+  <div
+    class="todo-item"
+    :id="`todo-item${index}`"
+    v-bind:class="{ 'is-complate': todo.completed }"
+  >
     <!-- @changeは、フォームコントロールの入力内容が変わると、発生するイベント -->
     <!-- v-on:change と @change は同等 -->
     <input type="checkbox" @change="markComplate" />
@@ -14,7 +18,7 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["todo"],
+  props: ["todo", "index"],
   methods: {
     markComplate() {
       // eslint-disable-next-line vue/no-mutating-props

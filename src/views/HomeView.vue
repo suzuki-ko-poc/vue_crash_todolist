@@ -55,6 +55,9 @@ export default {
   // createdは、vueインスタンスが生成されたタイミングで実行される。
   created() {
     axios
+      // http://localhost:1111/helloは、playwrightのmockを検証するために、
+      // 存在しないエンドポイントを指定している。テスト時はmock化するから動作するが、
+      // フロントエンドを立ち上げる上では、このままでは動かない。
       .get("http://localhost:1111/hello")
       .then((res) => {
         console.log('get axiosが呼ばれた',"http://localhost:1111hello"),

@@ -1,6 +1,11 @@
 .DS_Store
 node_modules
 /dist
+playwright-report/
+test-report/
+test-results/
+.nyc_output/
+coverage/
 
 
 # local env files
